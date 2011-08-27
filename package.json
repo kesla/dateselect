@@ -1,0 +1,15 @@
+{
+  "author": "David Björklund <davidbj@kth.se> (http://davidbjorklund.se)",
+  "name": "team-awesome",
+  "version": "0.0.0",
+  "repository": {
+    "url": ""
+  },
+  "engines": {
+    "node": "v0.4.x"
+  },
+  "dependencies": {
+    "nko": "~0.1.1"
+  },
+  "devDependencies": {}
+}
