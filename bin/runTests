@@ -5,31 +5,27 @@ var util = require('util');
 
 // Change directory to the directory where runGrammar is in.
 process.chdir(__dirname);
-var grammarFile = '../lib/grammar.js'
-var testFile = '../test/parserTest.js';
+var libs = ['../lib/grammar.js', '../lib/awesome.js'];
+var tests = ['../test/parserTest.js', '../test/awesomeTest.js'];
 
 function runTests(){
-	var vows = require('child_process').spawn('vows', [testFile]);
-	util.log("parserTest processed");
+	var vows = require('child_process').spawn('vows', tests);
+	util.log("all tests ran");
 	vows.stdout.on('data', function (data) {
-		console.log(data.toString());
+	  process.stdout.write(data);
 	});
 
 	vows.stderr.on('data', function (data) {
-		console.log(data.toString());
+	  process.stdout.write(data);
 	});
 }
 runTests();
 
-fs.watchFile(grammarFile, function (curr, prev) {
-	if(curr.mtime === prev.mtime){
-		return;
-	}
-	runTests();
-});
-fs.watchFile(testFile, function (curr, prev) {
-	if(curr.mtime === prev.mtime){
-		return;
-	}
-	runTests();
+tests.concat(libs).forEach(function(file){
+  fs.watchFile(file, function (curr, prev) {
+	  if(curr.mtime === prev.mtime){
+		  return;
+	  }
+	  runTests();
+  });
 });

@@ -4,7 +4,7 @@
 	Parsing to intermediate json (using jison)
     Parsing single selectors DONE 14:04
     Parsing multiple selectors DONE 15:53
-	Calculating next occurence
+	Calculating next occurence DONE 17:56
 	Naive scheduling
 	Profit
 
@@ -19,6 +19,7 @@
 	dateselect? (sounds like a dating site thought)
 	cronsux (a little harsh maybe)
 	cron kelly (weird name)
+	awesome
 
 3 simple class selectors (numbers only, like .1)
 
@@ -29,6 +30,8 @@
 5 other advanced selectors.
 	nth-child sux, it's not really working to get something running every 8:e day... or is it? I'll have to think about this.
 	'>', and others
+
+5 a bin file (that actually could replace cron)
 
 6 Cooler scheduling
 		Use setInterval smarter
