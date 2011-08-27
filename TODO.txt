@@ -5,8 +5,8 @@
     Parsing single selectors DONE 14:04
     Parsing multiple selectors DONE 15:53
 	Calculating next occurence DONE 17:56
-	Naive scheduling
-	Profit
+	Naive scheduling DONE
+	Profit DONE
 
 1	web page
 	general information
