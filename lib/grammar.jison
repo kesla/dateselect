@@ -5,14 +5,15 @@
 %%
 
 \s+                   /* skip whitespace */
-("year"|"y") 	        return 'YEAR'
-("month"|"M")					return 'MONTH'
-("day"|"d")           return 'DAY'
-("hour"|"h")          return 'HOUR'
-("minute"|"m")        return 'MINUTE'
-("second"|"s")        return 'SECOND'
-<<EOF>>               return 'EOF'
-.                     return 'INVALID'
+("year"|"y")               return 'YEAR'
+("month"|"M")              return 'MONTH'
+("day"|"d")               return 'DAY'
+("hour"|"h")              return 'HOUR'
+("minute"|"m")            return 'MINUTE'
+("second"|"s")            return 'SECOND'
+"."[0-9]+                 return 'CLASS'
+<<EOF>>                   return 'EOF'
+.                         return 'INVALID'
 
 /lex
 
@@ -29,59 +30,68 @@ expressions
       }
     ;
 
+class
+    : 'CLASS'
+      {
+        $$ = yytext.slice(1);
+      }
+    |
+      {$$ = -1}
+    ;
+
 year
-    : 'YEAR' ltyear
+    : 'YEAR' class ltyear
       {
         this.res = this.res || {};
-        this.res.year = -1;
+        this.res.year = $2
       }
     | ltyear
       {}
     ;
 
 ltyear
-    : 'MONTH' ltmonth
-    		{
+    : 'MONTH' class ltmonth
+        {
           this.res = this.res || {};
-          this.res.month = -1;
-    		}
+          this.res.month = $2;
+        }
     | ltmonth
         {}
     ;
 
 ltmonth
-    :	'DAY' ltday
-    		{
+    : 'DAY' class ltday
+        {
           this.res = this.res || {};
-          this.res.day = -1;
-    		}
+          this.res.day = $2;
+        }
     | ltday
         {}
     ;
 ltday
-    :	'HOUR' lthour
-    		{
+    : 'HOUR' class lthour
+        {
           this.res = this.res || {};
-          this.res.hour = -1;
-    		}
+          this.res.hour = $2;
+        }
     | lthour
         {}
     ;
 lthour
-    :	'MINUTE' ltminute
-    		{
+    : 'MINUTE' class ltminute
+        {
           this.res = this.res || {};
-          this.res.minute = -1;
-    		}
+          this.res.minute = $2;
+        }
     | ltminute
         {}
     ;
 
 ltminute
-    :	'SECOND'
-    		{
+    :  'SECOND' class
+        {
           this.res = this.res || {};
-          this.res.second = -1;
-    		}
+          this.res.second = $2;
+        }
     | // nothing
     ;
