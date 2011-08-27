@@ -1,4 +1,5 @@
 0 No more fucking facebook. DONE 12:06
+0 watch and automatically run tests and parser when files are changed. DONE 13:51<
 1	main selectors (year, month, day, hour, minute, second)
 	Parsing to intermediate json (using jison)
 	Calculating next occurence
@@ -20,6 +21,8 @@
 3 simple class selectors (numbers only, like .1)
 
 4 advanced class selectors (.weekday, .monday etc)
+
+4 "," support
 
 5 other advanced selectors.
 	nth-child sux, it's not really working to get something running every 8:e day... or is it? I'll have to think about this.

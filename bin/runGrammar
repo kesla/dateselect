@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var colors = require('colors');
+var util = require('util');
+
+// Change directory to the directory where runGrammar is in.
+process.chdir(__dirname);
+// Change directory to the directory where grammar.jison is.
+process.chdir('../lib');
+var grammarFile = 'grammar.jison';
+
+function parseGrammar(){
+	var jison = require('child_process').spawn('jison', [grammarFile]);
+	util.log("grammar.jison processed");
+	jison.stdout.on('data', function (data) {
+		console.log(data.toString());
+	});
+
+	jison.stderr.on('data', function (data) {
+		console.log(data.toString().red);
+	});
+}
+parseGrammar();
+
+fs.watchFile(grammarFile, function (curr, prev) {
+	if(curr.mtime === prev.mtime){
+		return;
+	}
+	parseGrammar();
+});
