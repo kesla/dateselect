@@ -1,6 +1,6 @@
 0 No more fucking facebook. DONE 12:06
 0 watch and automatically run tests and parser when files are changed. DONE 13:51<
-1	basic selectors (year, month, day, hour, minute, second)
+1	basic selectors (year, month, day, hour, minute, second) DONE!
 	Parsing to intermediate json (using jison)
     Parsing single selectors DONE 14:04
     Parsing multiple selectors DONE 15:53
@@ -9,27 +9,26 @@
 	Profit DONE
 
 1	web page
-	general information
+	general information DONE 20:38
+	examples DONE 20:30
 	some sort of socket.io-connection with dateSelect
 	"try it!"
 	homage
-	a cool look (probably borrow base from davidbjorklund.se)
+	a cool look (probably borrow base from davidbjorklund.se) DONE 19:33
 
 2	name
 	dateselect? (sounds like a dating site thought)
 	cronsux (a little harsh maybe)
-	cron kelly (weird name)
 	awesome
 
 3 simple class selectors (numbers only, like .1)
 
 4 advanced class selectors (.weekday, .monday etc)
 
-4 "," support
+4 "," and ">" support
 
 5 other advanced selectors.
 	nth-child sux, it's not really working to get something running every 8:e day... or is it? I'll have to think about this.
-	'>', and others
 
 5 a bin file (that actually could replace cron)
 

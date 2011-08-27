@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Awesome - a time-based job scheduler with CSS-like selector syntax.</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<!-- 1140px Grid styles for IE -->
+	<!--[if lte IE 9]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" /><![endif]-->
+
+	<!-- The 1140px Grid - http://cssgrid.net/ -->
+	<link rel="stylesheet" href="css/1140.css" type="text/css" media="screen" />
+	
+	<!--css3-mediaqueries-js - http://code.google.com/p/css3-mediaqueries-js/ - Enables media queries in some unsupported browsers-->
+	<script type="text/javascript" src="js/css3-mediaqueries.js"></script>
+
+	<!-- Google web fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Comfortaa|Shanti' rel='stylesheet' type='text/css'>
+
+	<!-- socket.io -->
+	<script src="/socket.io/socket.io.js"></script>
+
+  <!-- jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+  <!-- connect to socket and do magic -->
+  <script>
+  var socket = io.connect();
+
+  socket.on('pong', function (data) {
+//    $('#pong').prepend('<span style="font-weight: bold">Pong!</span> ' + new Date() + "<br/>");
+  });
+	</script>
+	
+	<style>
+	  h1, h2, h3 {
+	    font-faily: 'Comfortaa', cursive;
+	    font-weight: 400; 
+	  }
+
+    h1 {
+      margin-top: 40px;
+	    color: #930000;
+	    text-align: center;
+	    font-size: 72px;
+	    line-align: 72px;
+    }
+
+    h2#tagline {
+      margin-top: 0px;
+      text-align: center;
+    }
+
+	  h2 {
+	    margin-top: 30px;
+	  }
+	  
+	  h2, h3 {
+ 	    color: #ac3333;
+	  }
+	  
+	  a:hover, a:link, a:visited, a:active {
+	    color: #777;
+	  }
+	  
+	  #pong {
+	    height: 100px;
+	  }
+
+    p, pre, input {
+ 	    font: 14px "Shanti", sans-serif;
+    }
+
+	  p {
+	    margin-top: 10px;
+	  }
+	  
+	  pre {
+	    background: #f7f1f1;
+	    border-width: 1px;
+	    border-color: #ac9999;
+	    border-style: solid;
+	    border-radius: 3px;
+	    padding: 5px;
+	  }
+	</style>
+
+	
+</head>
+
+<body>
+<a href="http://github.com/kesla/node-awesome"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
+
+<div class="container" id="header">
+    <div class="row twelvecol">
+		  <h1>
+				  Awesome
+		  </h1>
+		  <h2 id="tagline"> a time-based job scheduler with CSS-like selectors.</h2>
+    </div>
+</div>
+<div class="container" id="main">
+	<div class="row">
+		<div class="eightcol">
+  	  <h2>About</h2>
+		  <p>
+		    Awesome is a time-based job scheduler - just like <a href="http://en.wikipedia.org/wiki/cron">cron</a>. With the help of CSS-like selectors, Awesome is easy to use while still being really powerfull. <a href="http://nodejs.org">Node.js</a> only.
+		  </p>
+      <h2>Examples</h2>
+		  <p>With awesome, you can for example schedule a task to be run once every minute in february:</p>
+		    <pre>awesome("month.2 minute", function(){
+		      doSomethingFunky();
+		    });</pre>
+
+      <p>Or create an alam clock:</p>
+      <pre>awesome("day.weekday hour.7am minute.30", function(){
+        console.log("7:30 is way to early to wake up.");
+        alarmClock();
+      });</pre>
+      <p>We can also use '>' in the above example:</p>
+      <pre>awesome("day.weekday > .7am > .30", function(){
+        console.log("7:30 is way to early to wake up.");
+        alarmClock();
+      });</pre>
+
+      <h2>Installation</h2>
+      <p>npm</p>
+      <h2>Syntax</h2>
+      <h2>Thanks</h2>
+      <p>
+        jison for parser. nodejs.
+      </p>
+      <h2>Inspiration</h2>
+      <p>jquery, jsonselect etc</p>
+    </div>
+		<div class="fourcol last">
+      <h2>Try it out</h2>
+      <input type="text" value="second"/><input type="submit" id="try-it" value="try it!"/>
+      <p id="pong"></p>
+		</div>
+	</div>
+</div>
+</body>
+
+</html>
