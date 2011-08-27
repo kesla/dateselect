@@ -2,6 +2,8 @@
 0 watch and automatically run tests and parser when files are changed. DONE 13:51<
 1	main selectors (year, month, day, hour, minute, second)
 	Parsing to intermediate json (using jison)
+    Parsing single selectors DONE 14:04
+    Parsing multiple selectors
 	Calculating next occurence
 	Naive scheduling
 	Profit
