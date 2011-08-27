@@ -1,0 +1,30 @@
+0 No more fucking facebook. DONE 12:06
+1	main selectors (year, month, day, hour, minute, second)
+	Parsing to intermediate json (using jison)
+	Calculating next occurence
+	Naive scheduling
+	Profit
+
+1	web page
+	general information
+	some sort of socket.io-connection with dateSelect
+	"try it!"
+	homage
+	a cool look (probably borrow base from davidbjorklund.se)
+
+2	name
+	dateselect? (sounds like a dating site thought)
+	cronsux (a little harsh maybe)
+	cron kelly (weird name)
+
+3 simple class selectors (numbers only, like .1)
+
+4 advanced class selectors (.weekday, .monday etc)
+
+5 other advanced selectors.
+	nth-child sux, it's not really working to get something running every 8:e day... or is it? I'll have to think about this.
+	'>', and others
+
+6 Cooler scheduling
+		Use setInterval smarter
+		Precise mode
