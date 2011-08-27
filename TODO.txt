@@ -21,9 +21,10 @@
 	cronsux (a little harsh maybe)
 	awesome
 
-3 simple class selectors (numbers only, like .1)
+3 simple class selectors (numbers only, like .1) DONE 00:03
+  and it was NOT simple. Hell no. Argh!
 
-4 advanced class selectors (.weekday, .monday etc)
+4 advanced class selectors (.weekday, .monday etc) DONE 00:59
 
 4 "," and ">" support
 

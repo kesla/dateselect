@@ -41,12 +41,21 @@ vows.describe('Calculating next occurence').addBatch({
                     assertEqual(new Date("1970-06-27 15:04:59 GMT")),
     "year.2011 month.6 day.27 hour.15 minute.4 second.59":
                     assertEqual(new Date("2011-06-27 15:04:59 GMT")),
+    "day.weekday hour.7 minute.30": // 1970-01-01 is a thursday = a weekday
+                    assertEqual(new Date("1970-01-01 07:30:00 GMT")),
+    "day.weekend hour.10 minute.30": // 1970-01-01 is a thursday = a weekday
+                    assertEqual(new Date("1970-01-03 10:30:00 GMT")),
+    "day.tuesday hour.8 minute.15":
+                    assertEqual(new Date("1970-01-06 08:15:00 GMT")),
+    "day.thursday":
+                    assertEqual(new Date("1970-01-01 00:00:00 GMT"))
   },
   "base: '1970-01-01T00:00:00.500Z' with selector": {
     "year":         assertEqual(new Date("1971-01-01 00:00:00 GMT")),
     "month":        assertEqual(new Date("1970-02-01 00:00:00 GMT")),
     "day":          assertEqual(new Date("1970-01-02 00:00:00 GMT")),
     "hour":         assertEqual(new Date("1970-01-01 01:00:00 GMT")),
+    "hour.9":       assertEqual(new Date("1970-01-01 09:00:00 GMT")),
     "minute":       assertEqual(new Date("1970-01-01 00:01:00 GMT")),
     "second":       assertEqual(new Date("1970-01-01 00:00:01 GMT"))
   },

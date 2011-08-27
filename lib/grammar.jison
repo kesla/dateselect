@@ -5,13 +5,21 @@
 %%
 
 \s+                   /* skip whitespace */
-("year"|"y")               return 'YEAR'
-("month"|"M")              return 'MONTH'
+("year"|"y")              return 'YEAR'
+("month"|"M")             return 'MONTH'
 ("day"|"d")               return 'DAY'
 ("hour"|"h")              return 'HOUR'
 ("minute"|"m")            return 'MINUTE'
 ("second"|"s")            return 'SECOND'
 "."[0-9]+                 return 'CLASS'
+".week"("day"|"end")      return 'DAYCLASS'
+".monday"                 return 'DAYCLASS'
+".tuesday"                return 'DAYCLASS'
+".wednesday"              return 'DAYCLASS'
+".thursday"               return 'DAYCLASS'
+".friday"                 return 'DAYCLASS'
+".saturday"               return 'DAYCLASS'
+".sunday"                 return 'DAYCLASS'
 <<EOF>>                   return 'EOF'
 .                         return 'INVALID'
 
@@ -30,10 +38,19 @@ expressions
       }
     ;
 
+dayclass
+    : 'DAYCLASS'
+      {
+        $$ = yytext.slice(1);
+      }
+    | class
+      {$$ = $1}
+    ;
+
 class
     : 'CLASS'
       {
-        $$ = yytext.slice(1);
+        $$ = Number(yytext.slice(1));
       }
     |
       {$$ = -1}
@@ -60,7 +77,7 @@ ltyear
     ;
 
 ltmonth
-    : 'DAY' class ltday
+    : 'DAY' dayclass ltday
         {
           this.res = this.res || {};
           this.res.day = $2;
