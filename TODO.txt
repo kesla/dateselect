@@ -1,9 +1,9 @@
 0 No more fucking facebook. DONE 12:06
 0 watch and automatically run tests and parser when files are changed. DONE 13:51<
-1	main selectors (year, month, day, hour, minute, second)
+1	basic selectors (year, month, day, hour, minute, second)
 	Parsing to intermediate json (using jison)
     Parsing single selectors DONE 14:04
-    Parsing multiple selectors
+    Parsing multiple selectors DONE 15:53
 	Calculating next occurence
 	Naive scheduling
 	Profit
