@@ -28,10 +28,24 @@
   <!-- connect to socket and do magic -->
   <script>
   var socket = io.connect();
+  var timeout, selectors;
 
   socket.on('pong', function (data) {
-//    $('#pong').prepend('<span style="font-weight: bold">Pong!</span> ' + new Date() + "<br/>");
+    var diff = data - Date.now();
+    timeout = setTimeout(function(){
+      console.log("awesome");
+      $("#pong").prepend(new Date() + "<br/>");
+      socket.emit('ping', selectors);
+    }, diff);
   });
+
+  $(function(){
+    $("#submit").click(function(){
+      selectors = $("#selectors").attr("value")
+      clearTimeout(timeout);
+      socket.emit('ping', selectors);
+    })
+  })
 	</script>
 	
 	<style>
@@ -66,14 +80,20 @@
 	  }
 	  
 	  #pong {
-	    height: 100px;
+	    height: 150px;
+	    overflow: hidden;
 	  }
 
     p, pre, input {
  	    font: 14px "Shanti", sans-serif;
     }
+    
+    pre {
+ 	    margin-left: 20px;
+    }
 
 	  p {
+	    margin-left: 10px;
 	    margin-top: 10px;
 	  }
 	  
@@ -98,7 +118,7 @@
 		  <h1>
 				  Awesome
 		  </h1>
-		  <h2 id="tagline"> a time-based job scheduler with CSS-like selectors.</h2>
+		  <h2 id="tagline"> a time-based job scheduler, but CSS-selectors</h2>
     </div>
 </div>
 <div class="container" id="main">
@@ -132,12 +152,11 @@
       <p>
         jison for parser. nodejs.
       </p>
-      <h2>Inspiration</h2>
-      <p>jquery, jsonselect etc</p>
+      <p>jquery, jsonselect etc for inspiration</p>
     </div>
 		<div class="fourcol last">
       <h2>Try it out</h2>
-      <input type="text" value="second"/><input type="submit" id="try-it" value="try it!"/>
+      <input type="text" value="second" id="selectors"/><input type="submit" value="ping" id="submit"/>
       <p id="pong"></p>
 		</div>
 	</div>

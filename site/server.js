@@ -30,8 +30,8 @@ httpServer.listen(port, function(){
 });
 
 io.sockets.on('connection', function (socket) {
-//  awesome.run("second", function(){
-//    console.log("Foo!")
-//    socket.emit('pong');
-//  });
+  socket.on("ping", function(selector){
+    var next = awesome.next(selector);
+    socket.emit('pong', next.getTime());
+  })
 });
