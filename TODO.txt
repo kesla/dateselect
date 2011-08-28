@@ -32,6 +32,7 @@
 
 5 other advanced selectors.
 	nth-child sux, it's not really working to get something running every 8:e day... or is it? I'll have to think about this.
+	I'm using :nth(4) instead. Done parsing.
 
 5 a bin file (that actually could replace cron)
 

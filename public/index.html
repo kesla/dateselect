@@ -89,11 +89,11 @@
 	  }
 	  
 	  a:hover, a:link, a:visited, a:active {
-	    color: #777;
+	    color: #533;
 	  }
 	  
 	  #pong {
-	    height: 150px;
+	    height: 50px;
 	    overflow: hidden;
 	  }
 
@@ -111,13 +111,18 @@
 	  }
 	  
 	  pre {
-	    background: #f7f1f1;
+	    background: #ffffff;
 	    border-width: 1px;
 	    border-color: #ac9999;
 	    border-style: solid;
 	    border-radius: 3px;
 	    padding: 5px;
 	  }
+	  
+	  body {
+	    background: #ffc;
+	  }
+	  
 	</style>
 
 	
@@ -148,16 +153,48 @@
       <h2>Usage</h2>
       <p>First, install dateselect with the help of npm:</p>
       <pre>npm install dateselect</pre>      
-      <p>Include dateselect in your module.</p>
-      <pre>var dateselect = require('dateselect');</pre>
+      <p>Include dateselect in your module:</p>
+      <pre>var dateselect = require('dateselect');
+dateselect("second", callback);
+var next = dateselect.next("second")</pre>
+      <p> The main method <i>dateselect</i> let's you schedule tasks, while <i>dateselect.next</i> return a Date representing the next occurence.</p>
+      <h3>Syntax</h3>
+      <p>Dateselect uses CSS-like selectors to select time. Dateselect assumes that you describe time like this:</p>
+      <pre>
+      &lt;year class="2011"&gt;
+        &lt;month class="1 january"&gt;
+          &lt;day class="1"&gt;
+            &lt;hour class="1 1am"&gt;
+              &lt;minute class="1"&gt;
+                &lt;second class="1"/&gt;
+                &lt;second class="2"/&gt;
+                <i>etc.</i>
+                &lt;second class="59"/&gt;
+              &lt;/minute&gt;
+              &lt;minute class="2"&gt;
+                <i>etc.</i>
+              &lt;/minute&gt;
+      <i>etc.</i></pre>
+      <p>This means that if we want a task to be run once every minute in february we can describe it like this:</p>
+		          <pre>
+      dateselect("month.2 minute", function(){
+          doSomethingFunky();
+      });</pre>
+      <p> Dateselect supports a non-standard meta-class for recurring events, <i>:nth()</i>. However, be aware that dateselect don't support this month or year. Then you can use day:nth() instead. If we want an event to be run every fifth second, we write</p>
+      <pre>dateselect("second:nth(5)", callback);</pre>.
+      <p> Dateselect also include som special classes:
+      <pre>.<i>x</i>am or .<i>x</i>pm for hour
+.weekend, .weekday, .monday, .tuesday etc. for days</pre>
+      <p> Think that the names are to long? Dateselect includes some shortcuts</p>
+      <pre>y === year
+M === month
+d === day
+h === hour
+m === minute
+s === second</pre>
+      <p> That's all. Look at the examples below, or try it for yourself.</p>
       <h2>Examples</h2>
-		  <p>Let's' schedule a task to be run once every minute in february:</p>
-		    <pre>
-dateselect("month.2 minute", function(){
-    doSomethingFunky();
-});</pre>
-
-      <p>Or an alam clock. Notice the use of am for the hour, dateselect supports both 12h clock and 24h clock.</p>
+      <p>Let's schedule an alam clock. Notice the use of am for the hour, dateselect supports both 12h clock and 24h clock.</p>
       <pre>
 // also availabe is .weekend, .monday, .tuesday etc.
 dateselect("day.weekday hour.7am minute.30", function(){
@@ -187,7 +224,7 @@ dateselect("y.2012 m d.4 h.8 M.13 s.4", callback);</pre>
     </div>
 		<div class="fourcol last">
       <h2>Try it out</h2>
-      <input type="text" value="second" id="selectors"/><input type="submit" value="ping" id="ping"/>
+      <input type="text" value="second:nth(5)" id="selectors"/><input type="submit" value="ping" id="ping"/>
       <p id="pong"></p>
       <h2>Contribute</h2>
       <p>Dateselect have a pretty good test coverage, but there could of course be some bugs unnoticed. If you find a bug, please <a href="https://github.com/kesla/dateselect/issues">file</a> it and I'll do my best in fixing it.</p>

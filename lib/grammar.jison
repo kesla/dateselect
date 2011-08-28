@@ -13,6 +13,7 @@
 ("second"|"s")            return 'SECOND'
 "."[0-9]+"am"             return 'AM'
 "."[0-9]+"pm"             return 'PM'
+":nth("[1-9][0-9]*")"     return 'NTH'
 "."[0-9]+                 return 'CLASS'
 ".week"("day"|"end")      return 'DAYCLASS'
 ".monday"                 return 'DAYCLASS'
@@ -36,16 +37,12 @@
 
 expressions
     : prepare year EOF
-      {
-        return this.result;
-      }
+      {return this.result;}
     ;
 
 prepare
     :
-      {
-        this.result = {}
-      }
+      {this.result = {};}
     ;
 
 dayclass
@@ -58,6 +55,8 @@ dayclass
 class
     : 'CLASS'
       {$$ = Number(yytext.slice(1));}
+    | 'NTH'
+      {$$ = {"nth" : Number(yytext.slice(5,-1))};}
     |
       {$$ = -1}
     ;
@@ -66,7 +65,6 @@ year
     : 'YEAR' class brmonth month
       {this.result.year = $2}
     | month
-      {}
     ;
 
 brmonth
@@ -79,7 +77,6 @@ month
     : 'MONTH' class brday day
       {this.result.month = $2;}
     | day
-        {}
     ;
 
 brday
@@ -91,7 +88,6 @@ day
     : 'DAY' dayclass brhour hour
       {this.result.day = $2;}
     | hour
-        {}
     ;
 brhour
     : '>' class brminute
@@ -102,7 +98,6 @@ hour
     : 'HOUR' ampm brminute minute
       {this.result.hour = $2;}
     | minute
-      {}
     ;
 
 ampm
@@ -124,7 +119,6 @@ minute
     : 'MINUTE' class brsecond second
       {this.result.minute = $2;}
     | second
-      {}
     ;
 
 brsecond
