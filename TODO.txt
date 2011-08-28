@@ -35,6 +35,8 @@
 
 5 a bin file (that actually could replace cron)
 
+5 am/pm, monthnames
+
 6 Cooler scheduling
 		Use setInterval smarter
 		Precise mode

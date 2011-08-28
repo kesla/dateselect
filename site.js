@@ -1,5 +1,5 @@
 var StaticServer = require('node-static').Server;
-var dateselect = require('../lib/dateselect')
+var dateselect = require('./lib/dateselect')
 
 //
 // Create a node-static server instance to serve the './public' folder
@@ -31,7 +31,12 @@ httpServer.listen(port, function(){
 
 io.sockets.on('connection', function (socket) {
   socket.on("ping", function(selector){
-    var next = dateselect.next(selector);
-    socket.emit('pong', next.getTime());
+    try{
+      var next = dateselect.next(selector);
+      socket.emit('pong', null, next.getTime());
+    } catch(e){
+      console.log(e);
+      socket.emit('pong', e.toString());
+    }
   })
 });

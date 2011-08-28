@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "nko": "0.1.1",
-    "underscore": "1.1.7"
+    "underscore": "1.1.7",
+    "node-static": "~0.5.9",
+    "socket.io": "~0.7.11"
   },
   "devDependencies": {}
 }

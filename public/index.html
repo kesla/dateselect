@@ -30,19 +30,22 @@
   var socket = io.connect();
   var timeout, selectors;
 
-  socket.on('pong', function (data) {
-    var diff = data - Date.now();
-    timeout = setTimeout(function(){
-      $("#pong").prepend(new Date() + "<br/>");
-      socket.emit('ping', selectors);
-    }, diff);
+  socket.on('pong', function (err, data) {
+    if(err){
+      $("#pong").prepend("<span style='color: red'>" + err + "</span><br>");
+    } else {
+      $("#pong").prepend("<span style='color: green'>Next run: " + new Date(data).toGMTString() + "</span><br>");
+    }
   });
 
   $(function(){
-    $("#submit").click(function(){
+    $("#ping").click(function(){
       selectors = $("#selectors").attr("value")
       clearTimeout(timeout);
       socket.emit('ping', selectors);
+    })
+    $("#stop").click(function(){
+      clearTimeout(timeout);
     })
   })
 	</script>
@@ -125,19 +128,26 @@
 <div class="container" id="main">
 	<div class="row">
 		<div class="eightcol">
-  	  <h2>About</h2>
+    	  <h2>About</h2>
 		  <p>
-		    Dateselect is a time-based job scheduler (like <a href="http://en.wikipedia.org/wiki/cron">cron</a>). With the help of CSS-like selectors, dateselect is easy to use while still being powerfull. <a href="http://nodejs.org">Node.js</a> only.
+		    Dateselect is a time-based job scheduler (like <a href="http://en.wikipedia.org/wiki/cron">cron</a>). The syntax is build on CSS-like selectors, so it's easy to use while still being powerfull. <a href="http://nodejs.org">Node.js</a> only.
 		  </p>
+		  <p>Dateselect is a <a href="http://davidbjorklund.se">David Björklund</a> production.</p>
+      <h2>Usage</h2>
+      <p>First, install dateselect with the help of npm:</p>
+      <pre>npm install dateselect</pre>      
+      <p>Include dateselect in your module.</p>
+      <pre>var dateselect = require('dateselect');</pre>
       <h2>Examples</h2>
-		  <p>With dateselect, you can for example schedule a task to be run once every minute in february:</p>
+		  <p>Let's' schedule a task to be run once every minute in february:</p>
 		    <pre>
 dateselect("month.2 minute", function(){
     doSomethingFunky();
 });</pre>
 
-      <p>Or create an alam clock:</p>
+      <p>Or an alam clock:</p>
       <pre>
+// also availabe is .weekend, .monday, .tuesday etc.
 dateselect("day.weekday hour.7am minute.30", function(){
     console.log("Wake up!");
     startTheRadio();
@@ -148,20 +158,29 @@ dateselect("day.weekday > .7am > .30", function(){
     console.log("Wake up!");
     startTheRadio();
 });</pre>
-
-      <h2>Installation</h2>
-      <p>npm</p>
-      <h2>Syntax</h2>
-      <h2>Thanks</h2>
-      <p>
-        jison for parser. nodejs.
-      </p>
-      <p>jquery, jsonselect etc for inspiration</p>
+      <p>Set the alarm to ring on saturday and sunday also:</p>
+      <pre>
+dateselect("day.weekday > .7am > .30, day.weekend > .10 .15", function(){
+    console.log("Wake up!");
+    startTheRadio();
+});</pre>
+      <p>dateselect.next return the Date when the next occurence is happening, e.g.</p>
+      <pre>
+var date = dateselect.next("minute");</pre>
+      <p>Aliases is also availabe:</p>
+      <pre>
+dateselect("year.2012 month day.4 hour.8 minute.13 second.4", callback);
+// equivalent with
+dateselect("y.2012 m d.4 h.8 M.13 s.4", callback);</pre>
     </div>
 		<div class="fourcol last">
       <h2>Try it out</h2>
-      <input type="text" value="second" id="selectors"/><input type="submit" value="ping" id="submit"/>
+      <input type="text" value="second" id="selectors"/><input type="submit" value="ping" id="ping"/><input type="submit" value="stop" id="stop">
       <p id="pong"></p>
+      <h2>Thanks</h2>
+      <p>I use <a href="http://zaach.github.com/jison/">jison</a> to parse the selectors. <a hef="http://jquery.com/">jquery</a> and <a href="http://jsonselect.org">jsonselect</a> was great for inspiration. This site about dateselect is built with <a href="http://nodejs.org/">Node.js</a>, <a href="http://socket.io">socket.io</a>, <a href="https://github.com/cloudhead/node-static">node-static</a>, <a href="http://cssgrid.net">1140 CSS grid</a>, <a href="http://jquery.com">jquery</a> and <a href="http://www.google.com/webfonts">Google Web Fonts</a>.
+			
+      </p>
 		</div>
 	</div>
 </div>
