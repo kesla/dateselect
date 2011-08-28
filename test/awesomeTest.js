@@ -67,8 +67,14 @@ vows.describe('Calculating next occurence').addBatch({
   "base: '1970-01-01T00:59:00.0Z' with selector": {
     "minute.13":    assertEqual(new Date("1970-01-01 01:13:00 GMT"))
   },
+  // test the comma
   "base: '1970-01-01T23:00:00.0Z' with selector": {
-    "hour.13":      assertEqual(new Date("1970-01-02 13:00:00 GMT"))
+    "hour.13, hour.22":
+                    assertEqual(new Date("1970-01-02 13:00:00 GMT"))
+  },
+  "base: '1970-01-01T21:00:00.0Z' with selector": {
+    "hour.13, hour.22":
+                    assertEqual(new Date("1970-01-01 22:00:00 GMT"))
   },
   "base: '1970-01-31T00:00:00.0Z' with selector": {
     "day.13":       assertEqual(new Date("1970-02-13 00:00:00 GMT")),

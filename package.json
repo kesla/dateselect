@@ -9,7 +9,8 @@
     "node": "v0.4.x"
   },
   "dependencies": {
-    "nko": "~0.1.1"
+    "nko": "~0.1.1",
+    "underscore": "~1.1.7"
   },
   "devDependencies": {}
 }
