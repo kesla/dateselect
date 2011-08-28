@@ -5,8 +5,8 @@ var util = require('util');
 
 // Change directory to the directory where runGrammar is in.
 process.chdir(__dirname);
-var libs = ['../lib/grammar.js', '../lib/awesome.js'];
-var tests = ['../test/parserTest.js', '../test/awesomeTest.js'];
+var libs = ['../lib/grammar.js', '../lib/dateselect.js'];
+var tests = ['../test/parserTest.js', '../test/dateselectTest.js'];
 
 function runTests(){
 	var vows = require('child_process').spawn('vows', tests);

@@ -1,7 +1,7 @@
 {
   "author": "David Björklund <davidbj@kth.se> (http://davidbjorklund.se)",
-  "name": "team-awesome",
-  "version": "0.0.0",
+  "name": "Dateselect",
+  "version": "0.0.1",
   "repository": {
     "url": ""
   },
@@ -9,8 +9,8 @@
     "node": "v0.4.x"
   },
   "dependencies": {
-    "nko": "~0.1.1",
-    "underscore": "~1.1.7"
+    "nko": "0.1.1",
+    "underscore": "1.1.7"
   },
   "devDependencies": {}
 }

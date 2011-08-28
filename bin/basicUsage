@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var awesome = require('../lib/awesome');
-awesome.run("year second  ", function(){
+var dateselect = require('../lib/dateselect');
+dateselect.run("year second  ", function(){
   console.log(Date.now());
 });

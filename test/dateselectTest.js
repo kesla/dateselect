@@ -1,6 +1,6 @@
 var vows = require('vows'),
     assert = require('assert'),
-    awesome = require('../lib/awesome.js');
+    dateselect = require('../lib/dateselect.js');
 
 function assertEqual(expected){
   var context = {
@@ -8,7 +8,7 @@ function assertEqual(expected){
       var selector = this.context.name;
       var base = this.context.env.context.title.split("'")[1];
       var baseDate = new Date(base);
-      return awesome.next(selector, baseDate);
+      return dateselect.next(selector, baseDate);
     }
   };
   context["should result"] = function(result){

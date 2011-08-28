@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Awesome - a time-based job scheduler with CSS-like selector syntax.</title>
+	<title>Dateselect - a time-based job scheduler with CSS-like selector syntax.</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
@@ -33,7 +33,6 @@
   socket.on('pong', function (data) {
     var diff = data - Date.now();
     timeout = setTimeout(function(){
-      console.log("awesome");
       $("#pong").prepend(new Date() + "<br/>");
       socket.emit('ping', selectors);
     }, diff);
@@ -111,14 +110,16 @@
 </head>
 
 <body>
-<a href="http://github.com/kesla/node-awesome"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
+<a href="http://github.com/kesla/dateselect"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
 
 <div class="container" id="header">
     <div class="row twelvecol">
 		  <h1>
-				  Awesome
+				  Dateselect
 		  </h1>
-		  <h2 id="tagline"> a time-based job scheduler, but CSS-selectors</h2>
+		  <h2 id="tagline">
+		      Schedule with CSS-like selectors.
+		  </h2>
     </div>
 </div>
 <div class="container" id="main">
@@ -126,24 +127,27 @@
 		<div class="eightcol">
   	  <h2>About</h2>
 		  <p>
-		    Awesome is a time-based job scheduler - just like <a href="http://en.wikipedia.org/wiki/cron">cron</a>. With the help of CSS-like selectors, Awesome is easy to use while still being really powerfull. <a href="http://nodejs.org">Node.js</a> only.
+		    Dateselect is a time-based job scheduler (like <a href="http://en.wikipedia.org/wiki/cron">cron</a>). With the help of CSS-like selectors, dateselect is easy to use while still being powerfull. <a href="http://nodejs.org">Node.js</a> only.
 		  </p>
       <h2>Examples</h2>
-		  <p>With awesome, you can for example schedule a task to be run once every minute in february:</p>
-		    <pre>awesome("month.2 minute", function(){
-		      doSomethingFunky();
-		    });</pre>
+		  <p>With dateselect, you can for example schedule a task to be run once every minute in february:</p>
+		    <pre>
+dateselect("month.2 minute", function(){
+    doSomethingFunky();
+});</pre>
 
       <p>Or create an alam clock:</p>
-      <pre>awesome("day.weekday hour.7am minute.30", function(){
-        console.log("7:30 is way to early to wake up.");
-        alarmClock();
-      });</pre>
+      <pre>
+dateselect("day.weekday hour.7am minute.30", function(){
+    console.log("Wake up!");
+    startTheRadio();
+});</pre>
       <p>We can also use '>' in the above example:</p>
-      <pre>awesome("day.weekday > .7am > .30", function(){
-        console.log("7:30 is way to early to wake up.");
-        alarmClock();
-      });</pre>
+      <pre>
+dateselect("day.weekday > .7am > .30", function(){
+    console.log("Wake up!");
+    startTheRadio();
+});</pre>
 
       <h2>Installation</h2>
       <p>npm</p>
