@@ -11,7 +11,7 @@
     "node": "v0.4.11"
   },
   "dependencies": {
-    "underscore": "1.1.7",
+    "underscore": "1.1.7"
   },
   "devDependencies": {
     "vows": "0.5.11",
