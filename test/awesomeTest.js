@@ -31,9 +31,9 @@ vows.describe('Calculating next occurence').addBatch({
     "minute.47":    assertEqual(new Date("1970-01-01 00:47:00 GMT")),
     "second":       assertEqual(new Date(0)),
     "second.59":    assertEqual(new Date("1970-01-01 00:00:59 GMT")),
-    "minute.4 second.59":
+    "minute.4 > .59":
                     assertEqual(new Date("1970-01-01 00:04:59 GMT")),
-    "hour.15 minute.4 second.59":
+    "hour.15 > .4 > .59":
                     assertEqual(new Date("1970-01-01 15:04:59 GMT")),
     "day.27 hour.15 minute.4 second.59":
                     assertEqual(new Date("1970-01-27 15:04:59 GMT")),
@@ -41,11 +41,13 @@ vows.describe('Calculating next occurence').addBatch({
                     assertEqual(new Date("1970-06-27 15:04:59 GMT")),
     "year.2011 month.6 day.27 hour.15 minute.4 second.59":
                     assertEqual(new Date("2011-06-27 15:04:59 GMT")),
-    "day.weekday hour.7 minute.30": // 1970-01-01 is a thursday = a weekday
+    "year.2011 > .6 > .27 > .15 > .4 > .59":
+                    assertEqual(new Date("2011-06-27 15:04:59 GMT")),
+    "day.weekday >.7 minute.30": // 1970-01-01 is a thursday = a weekday
                     assertEqual(new Date("1970-01-01 07:30:00 GMT")),
-    "day.weekend hour.10 minute.30": // 1970-01-01 is a thursday = a weekday
+    "day.weekend > .10 >.30": // 1970-01-01 is a thursday = a weekday
                     assertEqual(new Date("1970-01-03 10:30:00 GMT")),
-    "day.tuesday hour.8 minute.15":
+    "day.tuesday > .8 > .15":
                     assertEqual(new Date("1970-01-06 08:15:00 GMT")),
     "day.thursday":
                     assertEqual(new Date("1970-01-01 00:00:00 GMT"))

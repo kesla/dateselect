@@ -11,15 +11,16 @@
 1	web page
 	general information DONE 20:38
 	examples DONE 20:30
-	some sort of socket.io-connection with dateSelect
-	"try it!"
-	homage
+	some sort of socket.io-connection with dateSelect DONE 01:40
+	"try it!" DONE 01:40
+	thanks
 	a cool look (probably borrow base from davidbjorklund.se) DONE 19:33
+	syntax
 
 2	name
 	dateselect? (sounds like a dating site thought)
 	cronsux (a little harsh maybe)
-	awesome
+	awesome (alreday taken)
 
 3 simple class selectors (numbers only, like .1) DONE 00:03
   and it was NOT simple. Hell no. Argh!
@@ -27,6 +28,7 @@
 4 advanced class selectors (.weekday, .monday etc) DONE 00:59
 
 4 "," and ">" support
+  '>' DONE 10:40
 
 5 other advanced selectors.
 	nth-child sux, it's not really working to get something running every 8:e day... or is it? I'll have to think about this.

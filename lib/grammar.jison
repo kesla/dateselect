@@ -20,6 +20,7 @@
 ".friday"                 return 'DAYCLASS'
 ".saturday"               return 'DAYCLASS'
 ".sunday"                 return 'DAYCLASS'
+">"                       return '>'
 <<EOF>>                   return 'EOF'
 .                         return 'INVALID'
 
@@ -57,54 +58,97 @@ class
     ;
 
 year
-    : 'YEAR' class ltyear
+    : 'YEAR' class brmonth month
       {
         this.res = this.res || {};
         this.res.year = $2
       }
-    | ltyear
+    | month
       {}
     ;
 
-ltyear
-    : 'MONTH' class ltmonth
+brmonth
+    : '>' class brday
+      {
+        this.res = this.res || {};
+        this.res.month = $2
+      }
+    | // do nothing
+    ;
+
+month
+    : 'MONTH' class brday day
         {
           this.res = this.res || {};
           this.res.month = $2;
         }
-    | ltmonth
+    | day
         {}
     ;
 
-ltmonth
-    : 'DAY' dayclass ltday
+brday
+    : '>' class brhour
+      {
+        this.res = this.res || {};
+        this.res.day = $2
+      }
+    | // do nothing
+    ;
+day
+    : 'DAY' dayclass brhour hour
         {
           this.res = this.res || {};
           this.res.day = $2;
         }
-    | ltday
+    | hour
         {}
     ;
-ltday
-    : 'HOUR' class lthour
+brhour
+    : '>' class brminute
+      {
+        this.res = this.res || {};
+        this.res.hour = $2
+      }
+    | // do nothing
+    ;
+hour
+    : 'HOUR' class brminute minute
         {
           this.res = this.res || {};
           this.res.hour = $2;
         }
-    | lthour
+    | minute
         {}
     ;
-lthour
-    : 'MINUTE' class ltminute
+brminute
+    : '>' class brsecond
+      {
+        this.res = this.res || {};
+        this.res.minute = $2
+      }
+    | // do nothing
+    ;
+
+minute
+    : 'MINUTE' class brsecond second
         {
           this.res = this.res || {};
           this.res.minute = $2;
         }
-    | ltminute
+    | second
         {}
     ;
 
-ltminute
+brsecond
+    : '>' class
+      {
+        this.res = this.res || {};
+        this.res.second = $2;
+      }
+    | // do nothing
+    ;
+
+second
     :  'SECOND' class
         {
           this.res = this.res || {};
