@@ -8,7 +8,7 @@
     "type": "git"
   },
   "engines": {
-    "node": "v0.4.x"
+    "node": "v0.4.11"
   },
   "dependencies": {
     "nko": "0.1.1",
