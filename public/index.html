@@ -45,6 +45,21 @@
     })
   })
 	</script>
+
+<!-- Google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-25394218-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 	
 	<style>
 	  h1, h2, h3 {
@@ -126,9 +141,10 @@
 		<div class="eightcol">
     	  <h2>About</h2>
 		  <p>
-		    Dateselect is a time-based job scheduler (like <a href="http://en.wikipedia.org/wiki/cron">cron</a>). The syntax is build on CSS-like selectors, so it's easy to use while still being powerfull. <a href="http://nodejs.org">Node.js</a> only.
-		  </p>
+		    Dateselect is a time-based job scheduler (like <a href="http://en.wikipedia.org/wiki/cron">cron</a>). The syntax is built on CSS-like selectors, so it's easy to use while still being powerfull.</p>
 		  <p>Dateselect is a <a href="http://davidbjorklund.se">David Björklund</a> production.</p>
+		  <p><iframe src="http://nodeknockout.com/iframe/team-awesome" frameborder=0 scrolling=no allowtransparency=true width=115 height=25>
+</iframe>.</p>
       <h2>Usage</h2>
       <p>First, install dateselect with the help of npm:</p>
       <pre>npm install dateselect</pre>      
@@ -144,19 +160,19 @@ dateselect("month.2 minute", function(){
       <p>Or an alam clock:</p>
       <pre>
 // also availabe is .weekend, .monday, .tuesday etc.
-dateselect("day.weekday hour.7am minute.30", function(){
+dateselect("day.weekday hour.7 minute.30", function(){
     console.log("Wake up!");
     startTheRadio();
 });</pre>
       <p>We can also use '>' in the above example:</p>
       <pre>
-dateselect("day.weekday > .7am > .30", function(){
+dateselect("day.weekday > .7 > .30", function(){
     console.log("Wake up!");
     startTheRadio();
 });</pre>
       <p>Set the alarm to ring on saturday and sunday also:</p>
       <pre>
-dateselect("day.weekday > .7am > .30, day.weekend > .10 .15", function(){
+dateselect("day.weekday > .7 > .30, day.weekend > .10 > .15", function(){
     console.log("Wake up!");
     startTheRadio();
 });</pre>
@@ -173,8 +189,11 @@ dateselect("y.2012 m d.4 h.8 M.13 s.4", callback);</pre>
       <h2>Try it out</h2>
       <input type="text" value="second" id="selectors"/><input type="submit" value="ping" id="ping"/>
       <p id="pong"></p>
+      <h2>Contribute</h2>
+      <p>Dateselect have a pretty good test coverage, but there could of course be some bugs unnoticed. If you find a bug, please <a href="https://github.com/kesla/dateselect/issues">file</a> it and I'll do my best in fixing it.</p>
+      <p>Dateselect is <a href="http://www.opensource.org/licenses/MIT">open source</a> and availabe on <a href="">github</a>. Feel free to fork the repository and do something funky.</p>
       <h2>Thanks</h2>
-      <p>I use <a href="http://zaach.github.com/jison/">jison</a> to parse the selectors. <a hef="http://jquery.com/">jquery</a> and <a href="http://jsonselect.org">jsonselect</a> was great for inspiration. This site about dateselect is built with <a href="http://nodejs.org/">Node.js</a>, <a href="http://socket.io">socket.io</a>, <a href="https://github.com/cloudhead/node-static">node-static</a>, <a href="http://cssgrid.net">1140 CSS grid</a>, <a href="http://jquery.com">jquery</a> and <a href="http://www.google.com/webfonts">Google Web Fonts</a>.
+      <p>I use <a href="http://zaach.github.com/jison/">jison</a> to parse the CSS-selectors and <a href="http://documentcloud.github.com/underscore/">underscore.js</a> for some array-magic. <a hef="http://jquery.com/">jquery</a> and <a href="http://jsonselect.org">jsonselect</a> was great for inspiration. This site about dateselect is built with <a href="http://nodejs.org/">Node.js</a>, <a href="http://socket.io">socket.io</a>, <a href="https://github.com/cloudhead/node-static">node-static</a>, <a href="http://cssgrid.net">1140 CSS grid</a>, <a href="http://jquery.com">jquery</a> and <a href="http://www.google.com/webfonts">Google Web Fonts</a>.
 			
       </p>
 		</div>

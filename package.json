@@ -1,9 +1,11 @@
 {
   "author": "David Björklund <davidbj@kth.se> (http://davidbjorklund.se)",
-  "name": "Dateselect",
+  "description": "Dateselect is a time-based job scheduler (like cron). The syntax is built on CSS-like selectors, so it's easy to use while still being powerfull.",
+  "name": "dateselect",
   "version": "0.0.1",
   "repository": {
-    "url": ""
+    "url": "git://github.com/kesla/dateselect.git",
+    "type": "git"
   },
   "engines": {
     "node": "v0.4.x"
@@ -14,5 +16,8 @@
     "node-static": "~0.5.9",
     "socket.io": "~0.7.11"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "vows": "0.5.11",
+    "colors": "0.5.0"
+  }
 }
