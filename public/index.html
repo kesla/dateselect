@@ -193,6 +193,7 @@ var next = dateselect.next("second")</pre>
       dateselect("month.2 minute", function(){
           doSomethingFunky();
       });</pre>
+      <p>Worth mentioning is that the standard time for dateselect to execute is at january 1 00:00:00 GMT, whick means that if you specify "month.2 minute" is equivalent with "month.2 day.1 minute.1 second.0"</p>
       <p> Dateselect supports a non-standard meta-class for recurring events, <i>:nth()</i>. However, be aware that dateselect don't support this month or year. Then you can use day:nth() instead. If we want an event to be run every fifth second, we write</p>
       <pre>dateselect("second:nth(3)", callback);</pre>.
       <p> Dateselect also include som special classes:
