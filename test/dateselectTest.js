@@ -20,23 +20,26 @@ function assertEqual(expected){
 vows.describe('Calculating next occurence').addBatch({
   "base: '1970-01-01T00:00:00.0Z' with selector": {
     "year":         assertEqual(new Date(0)),
-    "year.2011":    assertEqual(new Date("2011-01-01 00:00:00 GMT")),
     "month":        assertEqual(new Date(0)),
-    "month.6":      assertEqual(new Date("1970-06-01 00:00:00 GMT")),
     "day":          assertEqual(new Date(0)),
-    "day.27":       assertEqual(new Date("1970-01-27 00:00:00 GMT")),
     "hour":         assertEqual(new Date(0)),
-    "hour.15":      assertEqual(new Date("1970-01-01 15:00:00 GMT")),
     "minute":       assertEqual(new Date(0)),
-    "minute.47":    assertEqual(new Date("1970-01-01 00:47:00 GMT")),
     "second":       assertEqual(new Date(0)),
-    "second.59":    assertEqual(new Date("1970-01-01 00:00:59 GMT")),
+  },
+  
+  "base : '1970-03-03T03:03:03.700Z' with selector": {
+    "year.2011":    assertEqual(new Date("2011-01-01 00:00:00 GMT")),  
+    "month.6":      assertEqual(new Date("1970-06-01 00:00:00 GMT")),
+    "day.27":       assertEqual(new Date("1970-03-27 00:00:00 GMT")),
+    "hour.15":      assertEqual(new Date("1970-03-03 15:00:00 GMT")),
+    "minute.47":    assertEqual(new Date("1970-03-03 03:47:00 GMT")),
+    "second.59":    assertEqual(new Date("1970-03-03 03:03:59 GMT")),
     "minute.4 > .59":
-                    assertEqual(new Date("1970-01-01 00:04:59 GMT")),
+                    assertEqual(new Date("1970-03-03 03:04:59 GMT")),
     "hour.15 > .4 > .59":
-                    assertEqual(new Date("1970-01-01 15:04:59 GMT")),
+                    assertEqual(new Date("1970-03-03 15:04:59 GMT")),
     "day.27 hour.15 minute.4 second.59":
-                    assertEqual(new Date("1970-01-27 15:04:59 GMT")),
+                    assertEqual(new Date("1970-03-27 15:04:59 GMT")),
     "month.6 day.27 hour.15 minute.4 second.59":
                     assertEqual(new Date("1970-06-27 15:04:59 GMT")),
     "year.2011 month.6 day.27 hour.15 minute.4 second.59":
@@ -44,14 +47,17 @@ vows.describe('Calculating next occurence').addBatch({
     "year.2011 > .6 > .27 > .15 > .4 > .59":
                     assertEqual(new Date("2011-06-27 15:04:59 GMT")),
     "day.weekday >.7 minute.30": // 1970-01-01 is a thursday = a weekday
-                    assertEqual(new Date("1970-01-01 07:30:00 GMT")),
+                    assertEqual(new Date("1970-03-03 07:30:00 GMT")),
     "day.weekend > .10 >.30": // 1970-01-01 is a thursday = a weekday
-                    assertEqual(new Date("1970-01-03 10:30:00 GMT")),
+                    assertEqual(new Date("1970-03-07 10:30:00 GMT")),
     "day.tuesday > .8 > .15":
-                    assertEqual(new Date("1970-01-06 08:15:00 GMT")),
+                    assertEqual(new Date("1970-03-03 08:15:00 GMT")),
     "day.thursday":
-                    assertEqual(new Date("1970-01-01 00:00:00 GMT"))
+                    assertEqual(new Date("1970-03-05 00:00:00 GMT")),
+    "hour.15 minute":
+                    assertEqual(new Date("1970-03-03 15:00:00 GMT"))
   },
+
   "base: '1970-01-01T00:00:00.500Z' with selector": {
     "year":         assertEqual(new Date("1971-01-01 00:00:00 GMT")),
     "month":        assertEqual(new Date("1970-02-01 00:00:00 GMT")),
@@ -89,4 +95,8 @@ vows.describe('Calculating next occurence').addBatch({
   "base: '1970-02-29T00:00:00.0Z' with selector": {
     "day.30":       assertEqual(new Date("1970-03-30 00:00:00 GMT"))
   },
+  "base: '2011-08-28T14:17:00.0Z' with selector": {
+    "month.2 minute":
+                    assertEqual(new Date("2012-02-01 00:00:00 GMT"))
+  }
 }).export(module);
