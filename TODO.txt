@@ -1,5 +1,5 @@
 0 No more fucking facebook. DONE 12:06
-0 watch and automatically run tests and parser when files are changed. DONE 13:51<
+0 watch and automatically run tests and parser when files are changed. DONE 13:51
 1	basic selectors (year, month, day, hour, minute, second) DONE!
 	Parsing to intermediate json (using jison)
     Parsing single selectors DONE 14:04
@@ -13,17 +13,17 @@
 	examples DONE 20:30
 	some sort of socket.io-connection with dateSelect DONE 01:40
 	"try it!" DONE 01:40
-	thanks
+	thanks DONE
 	a cool look (probably borrow base from davidbjorklund.se) DONE 19:33
-	syntax
+	syntax DONE
 
 2	name
-	dateselect? (sounds like a dating site thought)
+	dateselect? (sounds like a dating site thought) Yepp
 	cronsux (a little harsh maybe)
 	awesome (alreday taken)
 
 3 simple class selectors (numbers only, like .1) DONE 00:03
-  and it was NOT simple. Hell no. Argh!
+  and it was NOT simple. Hell no. Argh! DONE
 
 4 advanced class selectors (.weekday, .monday etc) DONE 00:59
 
@@ -35,7 +35,8 @@
 
 5 a bin file (that actually could replace cron)
 
-5 am/pm, monthnames
+5 am/pm DONE
+  monthnames
 
 6 Cooler scheduling
 		Use setInterval smarter

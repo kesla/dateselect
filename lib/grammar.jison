@@ -11,6 +11,8 @@
 ("hour"|"h")              return 'HOUR'
 ("minute"|"m")            return 'MINUTE'
 ("second"|"s")            return 'SECOND'
+"."[0-9]+"am"             return 'AM'
+"."[0-9]+"pm"             return 'PM'
 "."[0-9]+                 return 'CLASS'
 ".week"("day"|"end")      return 'DAYCLASS'
 ".monday"                 return 'DAYCLASS'
@@ -48,107 +50,91 @@ prepare
 
 dayclass
     : 'DAYCLASS'
-      {
-        $$ = yytext.slice(1);
-      }
+      {$$ = yytext.slice(1);}
     | class
       {$$ = $1}
     ;
 
 class
     : 'CLASS'
-      {
-        $$ = Number(yytext.slice(1));
-      }
+      {$$ = Number(yytext.slice(1));}
     |
       {$$ = -1}
     ;
 
 year
     : 'YEAR' class brmonth month
-      {
-        this.result.year = $2
-      }
+      {this.result.year = $2}
     | month
       {}
     ;
 
 brmonth
     : '>' class brday
-      {
-        this.result.month = $2
-      }
+      {this.result.month = $2}
     | // do nothing
     ;
 
 month
     : 'MONTH' class brday day
-        {
-          this.result.month = $2;
-        }
+      {this.result.month = $2;}
     | day
         {}
     ;
 
 brday
     : '>' class brhour
-      {
-        this.result.day = $2
-      }
+      {this.result.day = $2}
     | // do nothing
     ;
 day
     : 'DAY' dayclass brhour hour
-        {
-          this.result.day = $2;
-        }
+      {this.result.day = $2;}
     | hour
         {}
     ;
 brhour
     : '>' class brminute
-      {
-        this.result.hour = $2
-      }
+      {this.result.hour = $2;}
     | // do nothing
     ;
 hour
-    : 'HOUR' class brminute minute
-        {
-          this.result.hour = $2;
-        }
+    : 'HOUR' ampm brminute minute
+      {this.result.hour = $2;}
     | minute
-        {}
+      {}
     ;
+
+ampm
+    : 'AM'
+      {$$ = Number(yytext.slice(1, -2))%12;}
+    | 'PM'
+      {$$ = Number(yytext.slice(1, -2))%12 + 12;}
+    | class
+      {$$ = $1;}
+    ;
+
 brminute
     : '>' class brsecond
-      {
-        this.result.minute = $2
-      }
+      {this.result.minute = $2}
     | // do nothing
     ;
 
 minute
     : 'MINUTE' class brsecond second
-        {
-          this.result.minute = $2;
-        }
+      {this.result.minute = $2;}
     | second
-        {}
+      {}
     ;
 
 brsecond
     : '>' class
-      {
-        this.result.second = $2;
-      }
+      {this.result.second = $2;}
     | // do nothing
     ;
 
 second
     :  'SECOND' class
-        {
-          this.result.second = $2;
-        }
+      {this.result.second = $2;}
     | // nothing
     ;

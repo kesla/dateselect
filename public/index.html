@@ -157,22 +157,22 @@ dateselect("month.2 minute", function(){
     doSomethingFunky();
 });</pre>
 
-      <p>Or an alam clock:</p>
+      <p>Or an alam clock. Notice the use of am for the hour, dateselect supports both 12h clock and 24h clock.</p>
       <pre>
 // also availabe is .weekend, .monday, .tuesday etc.
-dateselect("day.weekday hour.7 minute.30", function(){
+dateselect("day.weekday hour.7am minute.30", function(){
     console.log("Wake up!");
     startTheRadio();
 });</pre>
       <p>We can also use '>' in the above example:</p>
       <pre>
-dateselect("day.weekday > .7 > .30", function(){
+dateselect("day.weekday > .7am > .30", function(){
     console.log("Wake up!");
     startTheRadio();
 });</pre>
       <p>Set the alarm to ring on saturday and sunday also:</p>
       <pre>
-dateselect("day.weekday > .7 > .30, day.weekend > .10 > .15", function(){
+dateselect("day.weekday > .7am > .30, day.weekend > .10 > .15", function(){
     console.log("Wake up!");
     startTheRadio();
 });</pre>
