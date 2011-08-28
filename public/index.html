@@ -28,22 +28,31 @@
   <!-- connect to socket and do magic -->
   <script>
   var socket = io.connect();
-  var selectors;
+  var timeout, selectors;
 
   socket.on('pong', function (err, data) {
+    console.log(data);
     if(err){
+      $("#next").html("");
       $("#pong").prepend("<span style='color: red'>" + err + "</span><br>");
     } else {
-      $("#pong").prepend("<span style='color: green'>Next run: " + new Date(data).toGMTString() + "</span><br>");
+      var diff = data - Date.now();
+      $("#next").html("Next run: " + new Date(data).toGMTString());
+      timeout = setTimeout(function(){
+        $("#pong").prepend("<span style='color: green'>Pong: " + new Date(data).toGMTString() + "</span><br>");
+        socket.emit('ping', selectors);
+      }, diff);
     }
   });
 
   $(function(){
     $("#ping").click(function(){
       selectors = $("#selectors").attr("value")
+      clearTimeout(timeout);
       socket.emit('ping', selectors);
-    })
-  })
+    });
+  });
+
 	</script>
 
 <!-- Google analytics -->
@@ -92,9 +101,13 @@
 	    color: #533;
 	  }
 	  
+	  #next {
+	    height: 19px;
+	  }
+	  
 	  #pong {
-	    height: 50px;
-	    overflow: hidden;
+	    height: 100px;
+	    overflow: auto;
 	  }
 
     p, pre, input {
@@ -181,7 +194,7 @@ var next = dateselect.next("second")</pre>
           doSomethingFunky();
       });</pre>
       <p> Dateselect supports a non-standard meta-class for recurring events, <i>:nth()</i>. However, be aware that dateselect don't support this month or year. Then you can use day:nth() instead. If we want an event to be run every fifth second, we write</p>
-      <pre>dateselect("second:nth(5)", callback);</pre>.
+      <pre>dateselect("second:nth(3)", callback);</pre>.
       <p> Dateselect also include som special classes:
       <pre>.<i>x</i>am or .<i>x</i>pm for hour
 .weekend, .weekday, .monday, .tuesday etc. for days</pre>
@@ -225,6 +238,7 @@ dateselect("y.2012 m d.4 h.8 M.13 s.4", callback);</pre>
 		<div class="fourcol last">
       <h2>Try it out</h2>
       <input type="text" value="second:nth(5)" id="selectors"/><input type="submit" value="ping" id="ping"/>
+      <p id="next"></p>
       <p id="pong"></p>
       <h2>Contribute</h2>
       <p>Dateselect have a pretty good test coverage, but there could of course be some bugs unnoticed. If you find a bug, please <a href="https://github.com/kesla/dateselect/issues">file</a> it and I'll do my best in fixing it.</p>
