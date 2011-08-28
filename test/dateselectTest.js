@@ -98,5 +98,13 @@ vows.describe('Calculating next occurence').addBatch({
   "base: '2011-08-28T14:17:00.0Z' with selector": {
     "month.2 minute":
                     assertEqual(new Date("2012-02-01 00:00:00 GMT"))
+  },
+  "base: '2011-08-28T17:21:00.0Z' with selector": {
+    "day.weekday > .7 > .30, day.weekend > .10 > .15":
+                    assertEqual(new Date("2011-08-29 07:30:00 GMT")),
+    "day.weekday > .7 > .30":
+                    assertEqual(new Date("2011-08-29 07:30:00 GMT")),
+    "day.weekend > .10 > .15":
+                    assertEqual(new Date("2011-09-03 10:15:00 GMT"))
   }
 }).export(module);
