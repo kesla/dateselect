@@ -59,7 +59,13 @@ vows.describe('Calculating next occurence').addBatch({
     "hour":         assertEqual(new Date("1970-01-01 01:00:00 GMT")),
     "hour.9":       assertEqual(new Date("1970-01-01 09:00:00 GMT")),
     "minute":       assertEqual(new Date("1970-01-01 00:01:00 GMT")),
-    "second":       assertEqual(new Date("1970-01-01 00:00:01 GMT"))
+    "second":       assertEqual(new Date("1970-01-01 00:00:01 GMT")),
+    "year.1970 second":
+                    assertEqual(new Date("1970-01-01 00:00:01 GMT")),
+    "month second": assertEqual(new Date("1970-01-01 00:00:01 GMT")),
+    "year second":  assertEqual(new Date("1970-01-01 00:00:01 GMT")),
+    "year month day hour minute second":
+                    assertEqual(new Date("1970-01-01 00:00:01 GMT"))
   },
   "base: '1970-01-01T00:00:59.0Z' with selector": {
     "second.13":    assertEqual(new Date("1970-01-01 00:01:13 GMT"))
