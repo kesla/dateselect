@@ -11,10 +11,7 @@
     "node": "v0.4.11"
   },
   "dependencies": {
-    "nko": "0.1.1",
     "underscore": "1.1.7",
-    "node-static": "~0.5.9",
-    "socket.io": "~0.7.11"
   },
   "devDependencies": {
     "vows": "0.5.11",
