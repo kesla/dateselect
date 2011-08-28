@@ -33,9 +33,16 @@
 %% /* language grammar */
 
 expressions
-    : year EOF
+    : prepare year EOF
       {
-        return this.res;
+        return this.result;
+      }
+    ;
+
+prepare
+    :
+      {
+        this.result = {}
       }
     ;
 
@@ -60,8 +67,7 @@ class
 year
     : 'YEAR' class brmonth month
       {
-        this.res = this.res || {};
-        this.res.year = $2
+        this.result.year = $2
       }
     | month
       {}
@@ -70,8 +76,7 @@ year
 brmonth
     : '>' class brday
       {
-        this.res = this.res || {};
-        this.res.month = $2
+        this.result.month = $2
       }
     | // do nothing
     ;
@@ -79,8 +84,7 @@ brmonth
 month
     : 'MONTH' class brday day
         {
-          this.res = this.res || {};
-          this.res.month = $2;
+          this.result.month = $2;
         }
     | day
         {}
@@ -89,16 +93,14 @@ month
 brday
     : '>' class brhour
       {
-        this.res = this.res || {};
-        this.res.day = $2
+        this.result.day = $2
       }
     | // do nothing
     ;
 day
     : 'DAY' dayclass brhour hour
         {
-          this.res = this.res || {};
-          this.res.day = $2;
+          this.result.day = $2;
         }
     | hour
         {}
@@ -106,16 +108,14 @@ day
 brhour
     : '>' class brminute
       {
-        this.res = this.res || {};
-        this.res.hour = $2
+        this.result.hour = $2
       }
     | // do nothing
     ;
 hour
     : 'HOUR' class brminute minute
         {
-          this.res = this.res || {};
-          this.res.hour = $2;
+          this.result.hour = $2;
         }
     | minute
         {}
@@ -123,8 +123,7 @@ hour
 brminute
     : '>' class brsecond
       {
-        this.res = this.res || {};
-        this.res.minute = $2
+        this.result.minute = $2
       }
     | // do nothing
     ;
@@ -132,8 +131,7 @@ brminute
 minute
     : 'MINUTE' class brsecond second
         {
-          this.res = this.res || {};
-          this.res.minute = $2;
+          this.result.minute = $2;
         }
     | second
         {}
@@ -142,8 +140,7 @@ minute
 brsecond
     : '>' class
       {
-        this.res = this.res || {};
-        this.res.second = $2;
+        this.result.second = $2;
       }
     | // do nothing
     ;
@@ -151,8 +148,7 @@ brsecond
 second
     :  'SECOND' class
         {
-          this.res = this.res || {};
-          this.res.second = $2;
+          this.result.second = $2;
         }
     | // nothing
     ;
