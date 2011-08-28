@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
 var dateselect = require('../lib/dateselect');
-dateselect.run("year second  ", function(){
+dateselect("year second  ", function(){
   console.log(Date.now());
 });
