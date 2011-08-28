@@ -28,7 +28,7 @@
   <!-- connect to socket and do magic -->
   <script>
   var socket = io.connect();
-  var timeout, selectors;
+  var selectors;
 
   socket.on('pong', function (err, data) {
     if(err){
@@ -41,11 +41,7 @@
   $(function(){
     $("#ping").click(function(){
       selectors = $("#selectors").attr("value")
-      clearTimeout(timeout);
       socket.emit('ping', selectors);
-    })
-    $("#stop").click(function(){
-      clearTimeout(timeout);
     })
   })
 	</script>
@@ -175,7 +171,7 @@ dateselect("y.2012 m d.4 h.8 M.13 s.4", callback);</pre>
     </div>
 		<div class="fourcol last">
       <h2>Try it out</h2>
-      <input type="text" value="second" id="selectors"/><input type="submit" value="ping" id="ping"/><input type="submit" value="stop" id="stop">
+      <input type="text" value="second" id="selectors"/><input type="submit" value="ping" id="ping"/>
       <p id="pong"></p>
       <h2>Thanks</h2>
       <p>I use <a href="http://zaach.github.com/jison/">jison</a> to parse the selectors. <a hef="http://jquery.com/">jquery</a> and <a href="http://jsonselect.org">jsonselect</a> was great for inspiration. This site about dateselect is built with <a href="http://nodejs.org/">Node.js</a>, <a href="http://socket.io">socket.io</a>, <a href="https://github.com/cloudhead/node-static">node-static</a>, <a href="http://cssgrid.net">1140 CSS grid</a>, <a href="http://jquery.com">jquery</a> and <a href="http://www.google.com/webfonts">Google Web Fonts</a>.

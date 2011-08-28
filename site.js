@@ -1,5 +1,6 @@
 var StaticServer = require('node-static').Server;
 var dateselect = require('./lib/dateselect')
+require('nko')('Hxtrx6gzbN0UJ876');
 
 //
 // Create a node-static server instance to serve the './public' folder
